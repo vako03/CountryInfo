@@ -58,8 +58,8 @@ class CountryTableViewCell: UITableViewCell {
             flagImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15),
             flagImageView.heightAnchor.constraint(equalToConstant: 20),
             flagImageView.widthAnchor.constraint(equalToConstant: 30),
-
-
+            
+            
             arrowImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             arrowImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             arrowImageView.heightAnchor.constraint(equalToConstant: 12),
@@ -78,7 +78,8 @@ class CountryTableViewCell: UITableViewCell {
     }
     
     // Configure cell with country data
-    func configure(with country: Country) {
+    // Configure cell with country data
+    func configure(with country: Element) {
         nameLabel.text = country.name.common
         
         // Load flag image asynchronously
@@ -93,3 +94,4 @@ class CountryTableViewCell: UITableViewCell {
         }
     }
 }
+

@@ -29,7 +29,7 @@ class ViewController: UIViewController {
         return tableView
     }()
     
-    private var countries: [Country] = []
+    private var countries: [Element] = []
     
     // MARK: - Lifecycle
     
@@ -46,22 +46,14 @@ class ViewController: UIViewController {
         view.addSubview(titleLabel)
         view.addSubview(tableView)
 
-       
-        
-        
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 19.9),
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
-            
-            
             tableView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 14),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 21),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -27),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-            
-            
         ])
-
     }
     
     // MARK: - Data Fetching
@@ -82,7 +74,7 @@ class ViewController: UIViewController {
             
             do {
                 let decoder = JSONDecoder()
-                self.countries = try decoder.decode([Country].self, from: data)
+                self.countries = try decoder.decode([Element].self, from: data)
                 
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
@@ -108,6 +100,7 @@ extension ViewController: UITableViewDataSource {
             
             let countryIndex = indexPath.row / 2
             let country = countries[countryIndex]
+            // Assuming your CountryTableViewCell has a configure method to populate its UI
             cell.configure(with: country)
             
             return cell
@@ -120,16 +113,17 @@ extension ViewController: UITableViewDataSource {
         }
     }
 }
-
 // MARK: - UITableViewDelegate
 
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-          let selectedCountry = countries[indexPath.row]
-          let detailVC = DetailCountryVC()
-          detailVC.country = selectedCountry
-          navigationController?.pushViewController(detailVC, animated: true)
-      }
+        if indexPath.row % 2 == 0 {
+            let selectedCountry = countries[indexPath.row / 2]
+            let detailVC = DetailCountryViewController()
+            detailVC.country = selectedCountry
+            navigationController?.pushViewController(detailVC, animated: true)
+        }
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row % 2 == 0 {
