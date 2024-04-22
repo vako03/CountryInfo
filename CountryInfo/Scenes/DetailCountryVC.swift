@@ -7,7 +7,11 @@
 import UIKit
 import SafariServices
 
+// MARK: - DetailCountryViewController
+
 class DetailCountryViewController: UIViewController {
+    
+    // MARK: - Properties
     
     var country: Element?
     
@@ -31,25 +35,21 @@ class DetailCountryViewController: UIViewController {
         return view
     }()
     
-    
     private let flagImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleToFill
         imageView.layer.cornerRadius = 30
         imageView.layer.masksToBounds = true
-
-        // Add shadow
         imageView.layer.shadowColor = UIColor.black.cgColor
         imageView.layer.shadowOffset = CGSize(width: 0, height: 2)
         imageView.layer.shadowOpacity = 0.5
         imageView.layer.shadowRadius = 4
         imageView.layer.shouldRasterize = true
         imageView.layer.rasterizationScale = UIScreen.main.scale
-
         return imageView
     }()
-
+    
     private let aboutFlagInfo : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -65,7 +65,6 @@ class DetailCountryViewController: UIViewController {
         label.numberOfLines = 0
         return label
     }()
-
     
     private let basicInfoLabel: UILabel = {
         let label = UILabel()
@@ -100,28 +99,29 @@ class DetailCountryViewController: UIViewController {
     }()
     
     private lazy var googleMapsButton: UIButton = {
-        let button = UIButton(type: .custom) // Use .custom type instead of .system
+        let button = UIButton(type: .custom)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(openGoogleMaps), for: .touchUpInside)
-        button.setImage(UIImage(named: "Group1"), for: .normal) // Set image for Google Maps button
-        button.backgroundColor = .clear // Set background color to clear
+        button.setImage(UIImage(named: "Group1"), for: .normal)
+        button.backgroundColor = .clear
         return button
     }()
     
     private lazy var openStreetMapsButton: UIButton = {
-        let button = UIButton(type: .custom) // Use .custom type instead of .system
+        let button = UIButton(type: .custom)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(openOpenStreetMaps), for: .touchUpInside)
-        button.setImage(UIImage(named: "Group2"), for: .normal) // Set image for OpenStreetMaps button
-        button.backgroundColor = .clear // Set background color to clear
+        button.setImage(UIImage(named: "Group2"), for: .normal)
+        button.backgroundColor = .clear
         return button
     }()
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
-
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         
@@ -153,7 +153,7 @@ class DetailCountryViewController: UIViewController {
             flagImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             flagImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             flagImageView.heightAnchor.constraint(equalToConstant: 228),
-           
+            
             aboutFlagInfo.topAnchor.constraint(equalTo: flagImageView.bottomAnchor, constant: 25),
             aboutFlagInfo.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
             
@@ -204,66 +204,33 @@ class DetailCountryViewController: UIViewController {
             aboutFlagLabel.text = country.flags.alt
             
             let basicInfoLabels: [(String, String?)] = [
-                    ("Capital", country.capital?.first),
-                    ("Region", country.region.rawValue),
-                    ("Neighbors", country.borders?.joined(separator: ", ")),
-                    ("Car Driving Side", country.car.side.rawValue),
-                    ("Demonym (English)", country.demonyms?.eng.f),
-                    ("Area (km²)", "\(country.area)")
-                ]
-                
-                for (propertyName, propertyValue) in basicInfoLabels {
-                    let horizontalStackView = UIStackView()
-                    horizontalStackView.axis = .horizontal
-                    horizontalStackView.spacing = 10
-                    horizontalStackView.alignment = .fill
-                    horizontalStackView.distribution = .fill
-                    
-                    let propertyLabel = UILabel()
-                    propertyLabel.text = propertyName
-                    propertyLabel.font = UIFont.systemFont(ofSize: 16)
-                    horizontalStackView.addArrangedSubview(propertyLabel)
-                    
-                    let valueLabel = UILabel()
-                    valueLabel.text = propertyValue ?? ""
-                    valueLabel.font = UIFont.systemFont(ofSize: 16)
-                    horizontalStackView.addArrangedSubview(valueLabel)
-                    
-                    basicInfoStackView.addArrangedSubview(horizontalStackView)
-                }
+                ("Capital", country.capital?.first),
+                ("Region", country.region.rawValue),
+                ("Neighbors", country.borders?.joined(separator: ", ")),
+                ("Car Driving Side", country.car.side.rawValue),
+                ("Demonym (English)", country.demonyms?.eng.f),
+                ("Area (km²)", "\(country.area)")
+            ]
             
-//            let basicInfoLabels: [(String, String?)] = [
-//                ("Capital", country.capital?.first),
-//                ("Region", country.region.rawValue),
-//                ("Neighbors", country.borders?.joined(separator: ", ")),
-//                ("Car Driving Side", country.car.side.rawValue),
-//                ("Demonym (English)", country.demonyms?.eng.f),
-//                ("Area (km²)", "\(country.area)")
-//            ]
-//
-//            for (propertyName, propertyValue) in basicInfoLabels {
-//                let propertyLabel = UILabel()
-//                propertyLabel.translatesAutoresizingMaskIntoConstraints = false
-//                propertyLabel.text = "\(propertyName):"
-//                propertyLabel.font = UIFont.systemFont(ofSize: 16)
-//                propertyLabel.textAlignment = .left // Align text to the left for the first label
-//
-//                // Add constraints to make the label fill the horizontal space
-//                propertyLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
-//                propertyLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
-//                basicInfoStackView.addArrangedSubview(propertyLabel)
-//
-//                let valueLabel = UILabel()
-//                valueLabel.translatesAutoresizingMaskIntoConstraints = false
-//                valueLabel.text = propertyValue
-//                valueLabel.font = UIFont.systemFont(ofSize: 16)
-//                valueLabel.textAlignment = .right // Align text to the right for the second label
-//
-//                // Add constraints to make the label fill the horizontal space
-//                valueLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
-//                valueLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
-//                basicInfoStackView.addArrangedSubview(valueLabel)
-//            }
+            for (propertyName, propertyValue) in basicInfoLabels {
+                let horizontalStackView = UIStackView()
+                horizontalStackView.axis = .horizontal
+                horizontalStackView.spacing = 10
+                horizontalStackView.alignment = .fill
+                horizontalStackView.distribution = .fill
+                
+                let propertyLabel = UILabel()
+                propertyLabel.text = propertyName
+                propertyLabel.font = UIFont.systemFont(ofSize: 16)
+                horizontalStackView.addArrangedSubview(propertyLabel)
+                
+                let valueLabel = UILabel()
+                valueLabel.text = propertyValue ?? ""
+                valueLabel.font = UIFont.systemFont(ofSize: 16)
+                horizontalStackView.addArrangedSubview(valueLabel)
+                
+                basicInfoStackView.addArrangedSubview(horizontalStackView)
+            }
         }
         setupNavigationBar()
     }
@@ -272,16 +239,12 @@ class DetailCountryViewController: UIViewController {
         if let country = country {
             let titleLabel = UILabel()
             titleLabel.text = country.name.common
-            titleLabel.font = UIFont.boldSystemFont(ofSize: 18) // Set custom font
-            titleLabel.textAlignment = .center // Center align text
-            
-            // Set title view for navigation bar
+            titleLabel.font = UIFont.boldSystemFont(ofSize: 18)
+            titleLabel.textAlignment = .center
             navigationItem.titleView = titleLabel
         }
-        
-        // Customize navigation bar appearance
         navigationController?.navigationBar.titleTextAttributes = [
-            .foregroundColor: UIColor.black // Set text color
+            .foregroundColor: UIColor.black
         ]
     }
     
@@ -310,7 +273,7 @@ class DetailCountryViewController: UIViewController {
     private func createHorizontalLine() -> UIView {
         let line = UIView()
         line.translatesAutoresizingMaskIntoConstraints = false
-        line.backgroundColor = UIColor(red: 217/255, green: 217/255, blue: 217/255, alpha: 1.0) // #D9D9D9
+        line.backgroundColor = UIColor(red: 217/255, green: 217/255, blue: 217/255, alpha: 1.0)
         view.addSubview(line)
         return line
     }

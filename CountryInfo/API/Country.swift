@@ -122,7 +122,7 @@ struct Currencies: Codable {
     let idr, cdf, vnd, gnf: Aed?
     let gel, mwk, iqd, jpy: Aed?
     let dop, qar: Aed?
-
+    
     enum CodingKeys: String, CodingKey {
         case mdl = "MDL"
         case usd = "USD"

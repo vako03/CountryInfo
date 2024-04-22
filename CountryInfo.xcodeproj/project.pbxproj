@@ -41,6 +41,49 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A8FC0B62BD6F3F200B8CD5F /* App */ = {
+			isa = PBXGroup;
+			children = (
+				3AC648802BD522F700610FE1 /* AppDelegate.swift */,
+				3AC648822BD522F700610FE1 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		3A8FC0B72BD6F40B00B8CD5F /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				3AC6489C2BD5B9BE00610FE1 /* DetailCountryVC.swift */,
+				3AC648842BD522F700610FE1 /* ViewController.swift */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		3A8FC0B82BD6F42300B8CD5F /* API */ = {
+			isa = PBXGroup;
+			children = (
+				3AC6489A2BD59A3200610FE1 /* Country.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		3A8FC0B92BD6F44200B8CD5F /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				3AC648982BD5993F00610FE1 /* CountryTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		3A8FC0BA2BD6F46200B8CD5F /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				3AC648892BD522FB00610FE1 /* Assets.xcassets */,
+				3AC6488B2BD522FB00610FE1 /* LaunchScreen.storyboard */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
 		3AC648742BD522F700610FE1 = {
 			isa = PBXGroup;
 			children = (
@@ -60,15 +103,12 @@
 		3AC6487F2BD522F700610FE1 /* CountryInfo */ = {
 			isa = PBXGroup;
 			children = (
-				3AC648802BD522F700610FE1 /* AppDelegate.swift */,
-				3AC648822BD522F700610FE1 /* SceneDelegate.swift */,
-				3AC648842BD522F700610FE1 /* ViewController.swift */,
-				3AC6489C2BD5B9BE00610FE1 /* DetailCountryVC.swift */,
-				3AC648892BD522FB00610FE1 /* Assets.xcassets */,
-				3AC6488B2BD522FB00610FE1 /* LaunchScreen.storyboard */,
+				3A8FC0B62BD6F3F200B8CD5F /* App */,
+				3A8FC0B72BD6F40B00B8CD5F /* Scenes */,
+				3A8FC0B92BD6F44200B8CD5F /* Cells */,
+				3A8FC0B82BD6F42300B8CD5F /* API */,
+				3A8FC0BA2BD6F46200B8CD5F /* Other */,
 				3AC6488E2BD522FB00610FE1 /* Info.plist */,
-				3AC648982BD5993F00610FE1 /* CountryTableViewCell.swift */,
-				3AC6489A2BD59A3200610FE1 /* Country.swift */,
 			);
 			path = CountryInfo;
 			sourceTree = "<group>";

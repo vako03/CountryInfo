@@ -6,6 +6,8 @@
 //
 import UIKit
 
+// MARK: - ViewController
+
 class ViewController: UIViewController {
     
     // MARK: - Properties
@@ -18,14 +20,13 @@ class ViewController: UIViewController {
         return label
     }()
     
-    
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(CountryTableViewCell.self, forCellReuseIdentifier: "CountryCell")
-        tableView.separatorStyle = .none // Optional: Hide table view separators
+        tableView.separatorStyle = .none
         return tableView
     }()
     
@@ -38,10 +39,9 @@ class ViewController: UIViewController {
         setupUI()
         fetchData()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        // Hide scroll indicators
         tableView.showsVerticalScrollIndicator = false
         tableView.showsHorizontalScrollIndicator = false
     }
@@ -52,7 +52,7 @@ class ViewController: UIViewController {
         view.backgroundColor = .white
         view.addSubview(titleLabel)
         view.addSubview(tableView)
-
+        
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 19.9),
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
@@ -64,7 +64,6 @@ class ViewController: UIViewController {
         tableView.showsVerticalScrollIndicator = false
         tableView.showsHorizontalScrollIndicator = false
         tableView.contentInset = UIEdgeInsets.zero
-
     }
     
     // MARK: - Data Fetching
@@ -102,21 +101,17 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return countries.count * 2 - 1 // Double the number of rows and subtract 1 for the additional space
+        return countries.count * 2 - 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row % 2 == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CountryCell", for: indexPath) as! CountryTableViewCell
-            
             let countryIndex = indexPath.row / 2
             let country = countries[countryIndex]
-            // Assuming your CountryTableViewCell has a configure method to populate its UI
             cell.configure(with: country)
-            
             return cell
         } else {
-            // Create a cell for spacing
             let cell = UITableViewCell()
             cell.backgroundColor = .clear
             cell.selectionStyle = .none
@@ -124,9 +119,11 @@ extension ViewController: UITableViewDataSource {
         }
     }
 }
+
 // MARK: - UITableViewDelegate
 
 extension ViewController: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row % 2 == 0 {
             let selectedCountry = countries[indexPath.row / 2]
@@ -138,9 +135,9 @@ extension ViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row % 2 == 0 {
-            return 50 // Height for country cell
+            return 50
         } else {
-            return 10 // Height for spacing
+            return 10
         }
     }
 }

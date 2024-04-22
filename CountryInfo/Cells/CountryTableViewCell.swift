@@ -50,7 +50,6 @@ class CountryTableViewCell: UITableViewCell {
         contentView.addSubview(flagImageView)
         contentView.addSubview(arrowImageView)
         
-        // Set up constraints
         NSLayoutConstraint.activate([
             flagImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15),
             flagImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
@@ -67,21 +66,18 @@ class CountryTableViewCell: UITableViewCell {
             nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30)
         ])
         
-        // Cell styling
-        contentView.backgroundColor = .white // Cell background color
-        contentView.layer.cornerRadius = 25 // Rounded corners
-        contentView.layer.borderWidth = 1 // Border width
-        contentView.layer.borderColor = UIColor.black.cgColor // Border color
-        contentView.layer.shadowOpacity = 0.0 // Remove shadow effect
-        contentView.clipsToBounds = true // Clip subviews to rounded corners
+        contentView.backgroundColor = .white
+        contentView.layer.cornerRadius = 25
+        contentView.layer.borderWidth = 1
+        contentView.layer.borderColor = UIColor.black.cgColor
+        contentView.layer.shadowOpacity = 0.0
+        contentView.clipsToBounds = true
     }
-
     
-    // Configure cell with country data
+    
     func configure(with country: Element) {
         nameLabel.text = country.name.common
         
-        // Load flag image asynchronously
         if let flagURL = URL(string: country.flags.png) {
             DispatchQueue.global().async {
                 if let data = try? Data(contentsOf: flagURL) {
