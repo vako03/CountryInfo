@@ -38,6 +38,13 @@ class ViewController: UIViewController {
         setupUI()
         fetchData()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Hide scroll indicators
+        tableView.showsVerticalScrollIndicator = false
+        tableView.showsHorizontalScrollIndicator = false
+    }
     
     // MARK: - UI Setup
     
@@ -54,6 +61,10 @@ class ViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -27),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+        tableView.showsVerticalScrollIndicator = false
+        tableView.showsHorizontalScrollIndicator = false
+        tableView.contentInset = UIEdgeInsets.zero
+
     }
     
     // MARK: - Data Fetching

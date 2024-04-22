@@ -15,6 +15,7 @@ class CountryTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 16)
+        label.numberOfLines = 0
         return label
     }()
     
@@ -26,7 +27,7 @@ class CountryTableViewCell: UITableViewCell {
     
     let arrowImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(systemName: "chevron.right"))
-        imageView.tintColor = .systemGray
+        imageView.tintColor = .black
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -51,14 +52,11 @@ class CountryTableViewCell: UITableViewCell {
         
         // Set up constraints
         NSLayoutConstraint.activate([
-            
-            
             flagImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15),
             flagImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
             flagImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15),
             flagImageView.heightAnchor.constraint(equalToConstant: 20),
             flagImageView.widthAnchor.constraint(equalToConstant: 30),
-            
             
             arrowImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             arrowImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
@@ -71,13 +69,14 @@ class CountryTableViewCell: UITableViewCell {
         
         // Cell styling
         contentView.backgroundColor = .white // Cell background color
-        contentView.layer.cornerRadius = 15 // Rounded corners
+        contentView.layer.cornerRadius = 25 // Rounded corners
         contentView.layer.borderWidth = 1 // Border width
         contentView.layer.borderColor = UIColor.black.cgColor // Border color
+        contentView.layer.shadowOpacity = 0.0 // Remove shadow effect
         contentView.clipsToBounds = true // Clip subviews to rounded corners
     }
+
     
-    // Configure cell with country data
     // Configure cell with country data
     func configure(with country: Element) {
         nameLabel.text = country.name.common
