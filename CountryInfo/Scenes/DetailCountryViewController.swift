@@ -1,5 +1,5 @@
 //
-//  DetailCountryVC.swift
+//  DetailCountryViewController.swift
 //  CountryInfo
 //
 //  Created by vako on 22.04.24.
@@ -7,7 +7,6 @@
 import UIKit
 import SafariServices
 
-// MARK: - DetailCountryViewController
 
 class DetailCountryViewController: UIViewController {
     
@@ -26,27 +25,35 @@ class DetailCountryViewController: UIViewController {
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.backgroundColor =  AppColors.customBackgroundColor
         return scrollView
     }()
     
     private let contentView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+        let contentView = UIView()
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.backgroundColor = .white //secondarySystemBackground
+        return contentView
+    }()
+    
+    let imageContainerView: UIView = {
+        let imageContainerView = UIView()
+        imageContainerView.translatesAutoresizingMaskIntoConstraints = false
+        imageContainerView.layer.cornerRadius = 15
+        imageContainerView.layer.shadowColor = UIColor.black.cgColor
+        imageContainerView.layer.shadowRadius = 2
+        imageContainerView.layer.shadowOpacity = 0.5
+        imageContainerView.layer.shadowOffset = CGSize(width: 0, height: 5)
+        imageContainerView.layer.masksToBounds = false
+        return imageContainerView
     }()
     
     private let flagImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleToFill
-        imageView.layer.cornerRadius = 30
-        imageView.layer.masksToBounds = true
-        imageView.layer.shadowColor = UIColor.black.cgColor
-        imageView.layer.shadowOffset = CGSize(width: 0, height: 2)
-        imageView.layer.shadowOpacity = 0.5
-        imageView.layer.shadowRadius = 4
-        imageView.layer.shouldRasterize = true
-        imageView.layer.rasterizationScale = UIScreen.main.scale
+        imageView.layer.cornerRadius = 15
+        imageView.clipsToBounds = true
         return imageView
     }()
     
@@ -61,7 +68,7 @@ class DetailCountryViewController: UIViewController {
     private let aboutFlagLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.font = UIFont.systemFont(ofSize: 14)
         label.numberOfLines = 0
         return label
     }()
@@ -120,12 +127,18 @@ class DetailCountryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = AppColors.customBackgroundColor
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+        setupUI()
+    }
+    
+    private func setupUI() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
+        contentView.addSubview(imageContainerView)
+        imageContainerView.addSubview(flagImageView)
+        contentView.backgroundColor =  AppColors.customBackgroundColor
         
-        contentView.addSubview(flagImageView)
         contentView.addSubview(aboutFlagInfo)
         contentView.addSubview(aboutFlagLabel)
         contentView.addSubview(basicInfoLabel)
@@ -136,6 +149,7 @@ class DetailCountryViewController: UIViewController {
         contentView.addSubview(openStreetMapsButton)
         
         let line1 = createHorizontalLine()
+        let line2 = createHorizontalLine()
         
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -149,17 +163,27 @@ class DetailCountryViewController: UIViewController {
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             
-            flagImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 29),
-            flagImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            flagImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            flagImageView.heightAnchor.constraint(equalToConstant: 228),
+            imageContainerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 29),
+            imageContainerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            imageContainerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            imageContainerView.heightAnchor.constraint(equalToConstant: 228),
             
-            aboutFlagInfo.topAnchor.constraint(equalTo: flagImageView.bottomAnchor, constant: 25),
+            flagImageView.topAnchor.constraint(equalTo: imageContainerView.topAnchor),
+            flagImageView.leadingAnchor.constraint(equalTo: imageContainerView.leadingAnchor),
+            flagImageView.trailingAnchor.constraint(equalTo: imageContainerView.trailingAnchor),
+            flagImageView.bottomAnchor.constraint(equalTo: imageContainerView.bottomAnchor),
+            
+            aboutFlagInfo.topAnchor.constraint(equalTo: imageContainerView.bottomAnchor, constant: 25),
             aboutFlagInfo.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
             
             aboutFlagLabel.topAnchor.constraint(equalTo: aboutFlagInfo.bottomAnchor, constant: 15),
             aboutFlagLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             aboutFlagLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            
+            line1.topAnchor.constraint(equalTo: aboutFlagLabel.bottomAnchor, constant: 20),
+            line1.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
+            line1.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
+            line1.heightAnchor.constraint(equalToConstant: 2),
             
             basicInfoLabel.topAnchor.constraint(equalTo: line1.bottomAnchor, constant: 24),
             basicInfoLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
@@ -169,7 +193,12 @@ class DetailCountryViewController: UIViewController {
             basicInfoStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             basicInfoStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
             
-            usefulLinksLabel.topAnchor.constraint(equalTo: basicInfoStackView.bottomAnchor, constant: 20),
+            line2.topAnchor.constraint(equalTo: basicInfoStackView.bottomAnchor, constant: 20),
+            line2.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
+            line2.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
+            line2.heightAnchor.constraint(equalToConstant: 2),
+            
+            usefulLinksLabel.topAnchor.constraint(equalTo: line2.bottomAnchor, constant: 25),
             usefulLinksLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             usefulLinksLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
             
@@ -177,17 +206,13 @@ class DetailCountryViewController: UIViewController {
             usefulLinksStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             usefulLinksStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
             
-            googleMapsButton.topAnchor.constraint(equalTo: usefulLinksStackView.bottomAnchor, constant: 20),
-            googleMapsButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            googleMapsButton.topAnchor.constraint(equalTo: usefulLinksStackView.bottomAnchor, constant: 15),
+            googleMapsButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 94),
             
-            openStreetMapsButton.topAnchor.constraint(equalTo: googleMapsButton.bottomAnchor, constant: 20),
-            openStreetMapsButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            openStreetMapsButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
+            openStreetMapsButton.topAnchor.constraint(equalTo: usefulLinksStackView.bottomAnchor, constant: 15),
+            openStreetMapsButton.leadingAnchor.constraint(equalTo: googleMapsButton.trailingAnchor, constant: 87),
+            openStreetMapsButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -94),
             
-            line1.topAnchor.constraint(equalTo: aboutFlagLabel.bottomAnchor, constant: 20),
-            line1.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
-            line1.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
-            line1.heightAnchor.constraint(equalToConstant: 2),
         ])
         
         if let country = country {
@@ -233,7 +258,10 @@ class DetailCountryViewController: UIViewController {
             }
         }
         setupNavigationBar()
+        
+        contentView.bottomAnchor.constraint(greaterThanOrEqualTo: openStreetMapsButton.bottomAnchor, constant: 25).isActive = true
     }
+    
     
     private func setupNavigationBar() {
         if let country = country {
@@ -249,7 +277,7 @@ class DetailCountryViewController: UIViewController {
     }
     
     @objc private func openGoogleMaps() {
-        guard let mapsURLString = country?.maps.googleMaps,
+        guard let mapsURLString = country?.maps.openStreetMaps,
               let encodedURLString = mapsURLString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
               let url = URL(string: encodedURLString) else {
             return
@@ -260,7 +288,7 @@ class DetailCountryViewController: UIViewController {
     }
     
     @objc private func openOpenStreetMaps() {
-        guard let mapsURLString = country?.maps.openStreetMaps,
+        guard let mapsURLString = country?.maps.googleMaps,
               let encodedURLString = mapsURLString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
               let url = URL(string: encodedURLString) else {
             return

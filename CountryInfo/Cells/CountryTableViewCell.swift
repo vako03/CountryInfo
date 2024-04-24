@@ -16,6 +16,7 @@ class CountryTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 16)
         label.numberOfLines = 0
+        label.textColor = AppColors.customTextColor
         return label
     }()
     
@@ -27,7 +28,7 @@ class CountryTableViewCell: UITableViewCell {
     
     let arrowImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(systemName: "chevron.right"))
-        imageView.tintColor = .black
+        imageView.tintColor = AppColors.customTextColor
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -66,10 +67,10 @@ class CountryTableViewCell: UITableViewCell {
             nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30)
         ])
         
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = AppColors.customCellBackgroundColor
         contentView.layer.cornerRadius = 25
         contentView.layer.borderWidth = 1
-        contentView.layer.borderColor = UIColor.black.cgColor
+        contentView.layer.borderColor = AppColors.customTextColor.cgColor
         contentView.layer.shadowOpacity = 0.0
         contentView.clipsToBounds = true
     }
