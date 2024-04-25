@@ -73,6 +73,7 @@ class CountryTableViewCell: UITableViewCell {
         contentView.layer.borderColor = AppColors.customTextColor.cgColor
         contentView.layer.shadowOpacity = 0.0
         contentView.clipsToBounds = true
+        
     }
     
     

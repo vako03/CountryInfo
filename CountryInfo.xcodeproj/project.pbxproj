@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3A1A9AA42BD94F9B00F8D499 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1A9AA32BD94F9B00F8D499 /* NetworkManager.swift */; };
 		3A7341EC2BD97C0B007FBF7C /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7341EB2BD97C0B007FBF7C /* AppColors.swift */; };
+		3A7343062BDAD629007FBF7C /* CountriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7343052BDAD629007FBF7C /* CountriesViewModel.swift */; };
 		3AC648812BD522F700610FE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC648802BD522F700610FE1 /* AppDelegate.swift */; };
 		3AC648832BD522F700610FE1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC648822BD522F700610FE1 /* SceneDelegate.swift */; };
 		3AC648852BD522F700610FE1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC648842BD522F700610FE1 /* ViewController.swift */; };
@@ -22,6 +23,7 @@
 /* Begin PBXFileReference section */
 		3A1A9AA32BD94F9B00F8D499 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		3A7341EB2BD97C0B007FBF7C /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
+		3A7343052BDAD629007FBF7C /* CountriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesViewModel.swift; sourceTree = "<group>"; };
 		3AC6487D2BD522F700610FE1 /* CountryInfo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CountryInfo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AC648802BD522F700610FE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3AC648822BD522F700610FE1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 			children = (
 				3AC648842BD522F700610FE1 /* ViewController.swift */,
 				3AC6489C2BD5B9BE00610FE1 /* DetailCountryViewController.swift */,
+				3A7343052BDAD629007FBF7C /* CountriesViewModel.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -192,6 +195,7 @@
 				3AC648992BD5993F00610FE1 /* CountryTableViewCell.swift in Sources */,
 				3AC648852BD522F700610FE1 /* ViewController.swift in Sources */,
 				3AC6489D2BD5B9BE00610FE1 /* DetailCountryViewController.swift in Sources */,
+				3A7343062BDAD629007FBF7C /* CountriesViewModel.swift in Sources */,
 				3A1A9AA42BD94F9B00F8D499 /* NetworkManager.swift in Sources */,
 				3AC648812BD522F700610FE1 /* AppDelegate.swift in Sources */,
 				3A7341EC2BD97C0B007FBF7C /* AppColors.swift in Sources */,

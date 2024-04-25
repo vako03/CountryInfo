@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    
+    private let viewModel = CountriesViewModel()
     // MARK: - Properties
     
     let titleLabel: UILabel = {
@@ -37,21 +39,32 @@ class ViewController: UIViewController {
         return tableView
     }()
     
-    private var countries: [Element] = []
-    private var filteredCountries: [Element] = [] // Added
-    
+   
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        fetchData()
+        updateTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.showsVerticalScrollIndicator = false
         tableView.showsHorizontalScrollIndicator = false
+    }
+    
+    private func updateTableView() {
+        viewModel.fetchData() { error in
+            if let error = error {
+                print("Error fetch data :\(error.localizedDescription)")
+            } else {
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+            
+        }
     }
     
     // MARK: - UI Setup
@@ -80,53 +93,26 @@ class ViewController: UIViewController {
         searchBar.delegate = self // Added
     }
     
-    // MARK: - Data Fetching
-    
-    private func fetchData() {
-        guard let url = URL(string: "https://restcountries.com/v3.1/all") else { return }
-        
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            if let error = error {
-                print("Error fetching data: \(error.localizedDescription)")
-                return
-            }
-            
-            guard let data = data else {
-                print("No data received")
-                return
-            }
-            
-            do {
-                let decoder = JSONDecoder()
-                self.countries = try decoder.decode([Element].self, from: data)
-                self.filteredCountries = self.countries
-                
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            } catch {
-                print("Error parsing JSON: \(error.localizedDescription)")
-            }
-        }.resume()
-    }
+
 }
 
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredCountries.count * 2 - 1
+        return viewModel.filteredCountries.count * 2 - 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row % 2 == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CountryCell", for: indexPath) as! CountryTableViewCell
             let countryIndex = indexPath.row / 2
-            let country = filteredCountries[countryIndex]
+            let country = viewModel.filteredCountries[countryIndex]
             cell.configure(with: country)
             return cell
         } else {
             let cell = UITableViewCell()
-            cell.backgroundColor = .clear
-            cell.selectionStyle = .none
+            cell.backgroundColor = AppColors.customCellBackgroundColor
+
+//            cell.selectionStyle = .none
             return cell
         }
     }
@@ -135,10 +121,11 @@ extension ViewController: UITableViewDataSource {
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row % 2 == 0 {
-            let selectedCountry = filteredCountries[indexPath.row / 2]
+            let selectedCountry = viewModel.filteredCountries[indexPath.row / 2]
             let detailVC = DetailCountryViewController()
             detailVC.country = selectedCountry
             navigationController?.pushViewController(detailVC, animated: true)
+
         }
     }
     
@@ -154,9 +141,9 @@ extension ViewController: UITableViewDelegate {
 extension ViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
-            filteredCountries = countries
+            viewModel.filteredCountries = viewModel.countries
         } else {
-            filteredCountries = countries.filter {
+            viewModel.filteredCountries = viewModel.countries.filter {
                 $0.name.common.lowercased().contains(searchText.lowercased())
             }
         }
