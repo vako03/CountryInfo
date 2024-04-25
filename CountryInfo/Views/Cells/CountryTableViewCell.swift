@@ -70,10 +70,9 @@ class CountryTableViewCell: UITableViewCell {
         contentView.backgroundColor = AppColors.customCellBackgroundColor
         contentView.layer.cornerRadius = 25
         contentView.layer.borderWidth = 1
-        contentView.layer.borderColor = AppColors.customTextColor.cgColor
+        contentView.layer.borderColor = AppColors.customBackgroundColor1.cgColor
         contentView.layer.shadowOpacity = 0.0
         contentView.clipsToBounds = true
-        
     }
     
     
