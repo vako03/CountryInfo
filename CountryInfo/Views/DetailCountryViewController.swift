@@ -7,18 +7,17 @@
 import UIKit
 import SafariServices
 
-
 class DetailCountryViewController: UIViewController {
     
     // MARK: - Properties
     
-    var country: Element?
+    var viewModel: DetailCountryViewModel?
     
     private lazy var backButton: UIButton = {
         let backButton = UIButton(type: .custom)
         backButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
-        backButton.tintColor = .black
+        backButton.tintColor = AppColors.customBackgroundColor1
         return backButton
     }()
     
@@ -215,10 +214,10 @@ class DetailCountryViewController: UIViewController {
             
         ])
         
-        if let country = country {
-            if let flagURL = URL(string: country.flags.png) {
+        if let viewModel = viewModel {
+            if let flagImageURL = viewModel.flagImageURL {
                 DispatchQueue.global().async {
-                    if let data = try? Data(contentsOf: flagURL) {
+                    if let data = try? Data(contentsOf: flagImageURL) {
                         DispatchQueue.main.async {
                             self.flagImageView.image = UIImage(data: data)
                         }
@@ -226,18 +225,9 @@ class DetailCountryViewController: UIViewController {
                 }
             }
             
-            aboutFlagLabel.text = country.flags.alt
+            aboutFlagLabel.text = viewModel.aboutFlagText
             
-            let basicInfoLabels: [(String, String?)] = [
-                ("Capital", country.capital?.first),
-                ("Region", country.region.rawValue),
-                ("Neighbors", country.borders?.joined(separator: ", ")),
-                ("Car Driving Side", country.car.side.rawValue),
-                ("Demonym (English)", country.demonyms?.eng.f),
-                ("Area (km²)", "\(country.area)")
-            ]
-            
-            for (propertyName, propertyValue) in basicInfoLabels {
+            for (propertyName, propertyValue) in viewModel.basicInfoLabels {
                 let horizontalStackView = UIStackView()
                 horizontalStackView.axis = .horizontal
                 horizontalStackView.spacing = 10
@@ -254,7 +244,7 @@ class DetailCountryViewController: UIViewController {
                 valueLabel.font = UIFont.systemFont(ofSize: 16)
                 horizontalStackView.addArrangedSubview(valueLabel)
                 
-                basicInfoStackView.addArrangedSubview(horizontalStackView)
+                self.basicInfoStackView.addArrangedSubview(horizontalStackView)
             }
         }
         setupNavigationBar()
@@ -264,9 +254,9 @@ class DetailCountryViewController: UIViewController {
     
     
     private func setupNavigationBar() {
-        if let country = country {
+        if let viewModel = viewModel {
             let titleLabel = UILabel()
-            titleLabel.text = country.name.common
+            titleLabel.text = viewModel.country.name.common
             titleLabel.font = UIFont.boldSystemFont(ofSize: 18)
             titleLabel.textAlignment = .center
             navigationItem.titleView = titleLabel
@@ -277,9 +267,8 @@ class DetailCountryViewController: UIViewController {
     }
     
     @objc private func openGoogleMaps() {
-        guard let mapsURLString = country?.maps.openStreetMaps,
-              let encodedURLString = mapsURLString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-              let url = URL(string: encodedURLString) else {
+        guard let viewModel = viewModel,
+              let url = viewModel.googleMapsURL else {
             return
         }
         
@@ -288,9 +277,8 @@ class DetailCountryViewController: UIViewController {
     }
     
     @objc private func openOpenStreetMaps() {
-        guard let mapsURLString = country?.maps.googleMaps,
-              let encodedURLString = mapsURLString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-              let url = URL(string: encodedURLString) else {
+        guard let viewModel = viewModel,
+              let url = viewModel.openStreetMapsURL else {
             return
         }
         

@@ -7,9 +7,10 @@
 // ViewController.swift
 
 import UIKit
+import Speech
 
 class ViewController: UIViewController {
-
+    
     // MARK: - Properties
     
     let viewModel = CountriesViewModel()
@@ -24,9 +25,8 @@ class ViewController: UIViewController {
     
     private let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
-        searchBar.placeholder = "Search countries"
+        searchBar.placeholder = "Search"
         searchBar.translatesAutoresizingMaskIntoConstraints = false
-        searchBar.backgroundColor = .clear
         return searchBar
     }()
     
@@ -73,6 +73,14 @@ class ViewController: UIViewController {
         searchBar.delegate = self
         tableView.dataSource = self
         tableView.delegate = self
+        
+        searchBar.showsBookmarkButton = true
+        searchBar.setImage(UIImage(systemName: "mic"), for: .bookmark, state: .normal)
+        searchBar.tintColor = .systemBlue
+        
+        searchBar.barTintColor = .clear
+        searchBar.backgroundImage = UIImage()
+        
     }
     
     // MARK: - ViewModel Binding
@@ -89,6 +97,26 @@ extension ViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         viewModel.filterCountries(with: searchText)
     }
+    
+    func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
+        startSpeechRecognition()
+    }
+    
+    func startSpeechRecognition() {
+        let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))
+        let request = SFSpeechRecognitionRequest()
+        speechRecognizer?.recognitionTask(with: request) { [weak self] (result, error) in
+            guard let result = result else {
+                print("Recognition failed: \(error?.localizedDescription ?? "No error")")
+                return
+            }
+            if result.isFinal {
+                let spokenText = result.bestTranscription.formattedString
+                self?.searchBar.text = spokenText
+                self?.viewModel.filterCountries(with: spokenText)
+            }
+        }
+    }
 }
 
 // MARK: - CountriesViewModelDelegate
@@ -100,6 +128,5 @@ extension ViewController: CountriesViewModelDelegate {
     
     func didEncounterError(error: Error) {
         print("Error fetch data: \(error.localizedDescription)")
-        // Handle the error
     }
 }

@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Element
 struct Element: Codable {
     let name: Name
     let capital: [String]?

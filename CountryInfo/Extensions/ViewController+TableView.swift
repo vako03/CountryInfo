@@ -20,7 +20,7 @@ extension ViewController: UITableViewDataSource {
             return cell
         } else {
             let cell = UITableViewCell()
-            cell.backgroundColor = AppColors.customCellBackgroundColor
+            cell.backgroundColor = AppColors.customBackgroundColor
             return cell
         }
     }
@@ -31,7 +31,7 @@ extension ViewController: UITableViewDelegate {
         if indexPath.row % 2 == 0 {
             if let selectedCountry = viewModel.country(at: indexPath.row / 2) {
                 let detailVC = DetailCountryViewController()
-                detailVC.country = selectedCountry
+                detailVC.viewModel = DetailCountryViewModel(country: selectedCountry)
                 navigationController?.pushViewController(detailVC, animated: true)
             }
         }

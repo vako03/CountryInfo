@@ -66,8 +66,9 @@ class CountryTableViewCell: UITableViewCell {
             nameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30)
         ])
-        
+        backgroundColor = .clear
         contentView.backgroundColor = AppColors.customCellBackgroundColor
+        
         contentView.layer.cornerRadius = 25
         contentView.layer.borderWidth = 1
         contentView.layer.borderColor = AppColors.customBackgroundColor1.cgColor
