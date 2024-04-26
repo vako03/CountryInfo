@@ -20,6 +20,7 @@ struct AppColors {
         
     }
     
+    
     static let customBackgroundColor1 = UIColor { traitCollection in
         
         switch traitCollection.userInterfaceStyle {
@@ -27,6 +28,17 @@ struct AppColors {
             return UIColor(named: "screen_background1")!
         default:
             return UIColor(named: "screen_background1")!
+        }
+        
+    }
+    
+    static let customTextFieldBackgroundColor1 = UIColor { traitCollection in
+        
+        switch traitCollection.userInterfaceStyle {
+        case .dark:
+            return UIColor(named: "textFieldColor")!
+        default:
+            return UIColor(named: "textFieldColor")!
         }
         
     }
