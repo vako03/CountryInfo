@@ -7,7 +7,6 @@
 // ViewController.swift
 
 import UIKit
-import Speech
 
 class ViewController: UIViewController {
     
@@ -44,12 +43,15 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         bindViewModel()
+        
+        // Hide back button
+        navigationItem.hidesBackButton = true
     }
     
     // MARK: - UI Setup
     
     private func setupUI() {
-        view.backgroundColor = AppColors.customBackgroundColor
+        view.backgroundColor = .white
         
         view.addSubview(titleLabel)
         view.addSubview(searchBar)
@@ -80,7 +82,6 @@ class ViewController: UIViewController {
         
         searchBar.barTintColor = .clear
         searchBar.backgroundImage = UIImage()
-        
     }
     
     // MARK: - ViewModel Binding
@@ -89,44 +90,65 @@ class ViewController: UIViewController {
         viewModel.delegate = self
         viewModel.fetchData()
     }
+    
+    // MARK: - Alert
+    
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
 }
 
-// MARK: - UISearchBarDelegate
+// MARK: - Extensions
+
+extension ViewController: CountriesViewModelDelegate {
+    func didUpdateCountries() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    func didEncounterError(error: Error) {
+        DispatchQueue.main.async {
+            self.showAlert(title: "Error", message: error.localizedDescription)
+        }
+    }
+}
 
 extension ViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         viewModel.filterCountries(with: searchText)
     }
-    
-    func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
-        startSpeechRecognition()
-    }
-    
-    func startSpeechRecognition() {
-        let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))
-        let request = SFSpeechRecognitionRequest()
-        speechRecognizer?.recognitionTask(with: request) { [weak self] (result, error) in
-            guard let result = result else {
-                print("Recognition failed: \(error?.localizedDescription ?? "No error")")
-                return
-            }
-            if result.isFinal {
-                let spokenText = result.bestTranscription.formattedString
-                self?.searchBar.text = spokenText
-                self?.viewModel.filterCountries(with: spokenText)
-            }
-        }
-    }
 }
 
-// MARK: - CountriesViewModelDelegate
 
-extension ViewController: CountriesViewModelDelegate {
-    func didUpdateCountries() {
-        tableView.reloadData()
-    }
-    
-    func didEncounterError(error: Error) {
-        print("Error fetch data: \(error.localizedDescription)")
-    }
-}
+//extension ViewController: UITableViewDataSource {
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return viewModel.numberOfCountries
+//    }
+//    
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CountryCell", for: indexPath) as? CountryTableViewCell else {
+//            return UITableViewCell()
+//        }
+//        
+//        if let country = viewModel.country(at: indexPath.row) {
+//            cell.configure(with: country)
+//        }
+//        
+//        return cell
+//    }
+//}
+//
+//extension ViewController: UITableViewDelegate {
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 180
+//    }
+//    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        guard let country = viewModel.country(at: indexPath.row) else { return }
+//        let detailVC = DetailCountryViewController(country: country)
+//        navigationController?.pushViewController(detailVC, animated: true)
+//    }
+//}
