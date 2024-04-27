@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A367A842BDC705C00C01708 /* ViewControllerUIElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A367A832BDC705C00C01708 /* ViewControllerUIElements.swift */; };
+		3A367A862BDC731D00C01708 /* DetailCountryViewElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A367A852BDC731D00C01708 /* DetailCountryViewElements.swift */; };
 		3A7341EC2BD97C0B007FBF7C /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7341EB2BD97C0B007FBF7C /* AppColors.swift */; };
 		3A7343062BDAD629007FBF7C /* CountriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7343052BDAD629007FBF7C /* CountriesViewModel.swift */; };
 		3A7343082BDAF7DA007FBF7C /* ViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7343072BDAF7DA007FBF7C /* ViewController+TableView.swift */; };
@@ -27,6 +29,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A367A832BDC705C00C01708 /* ViewControllerUIElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerUIElements.swift; sourceTree = "<group>"; };
+		3A367A852BDC731D00C01708 /* DetailCountryViewElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCountryViewElements.swift; sourceTree = "<group>"; };
 		3A7341EB2BD97C0B007FBF7C /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
 		3A7343052BDAD629007FBF7C /* CountriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesViewModel.swift; sourceTree = "<group>"; };
 		3A7343072BDAF7DA007FBF7C /* ViewController+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+TableView.swift"; sourceTree = "<group>"; };
@@ -100,6 +104,8 @@
 			isa = PBXGroup;
 			children = (
 				3A7343072BDAF7DA007FBF7C /* ViewController+TableView.swift */,
+				3A367A832BDC705C00C01708 /* ViewControllerUIElements.swift */,
+				3A367A852BDC731D00C01708 /* DetailCountryViewElements.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -249,8 +255,10 @@
 				3A7343062BDAD629007FBF7C /* CountriesViewModel.swift in Sources */,
 				3AA860522BDC25AF003F79E3 /* LoginPageViewController.swift in Sources */,
 				3A73431D2BDB18C1007FBF7C /* DetailCountryViewModel.swift in Sources */,
+				3A367A842BDC705C00C01708 /* ViewControllerUIElements.swift in Sources */,
 				3AC648812BD522F700610FE1 /* AppDelegate.swift in Sources */,
 				3A73430B2BDAF931007FBF7C /* Element.swift in Sources */,
+				3A367A862BDC731D00C01708 /* DetailCountryViewElements.swift in Sources */,
 				3A7341EC2BD97C0B007FBF7C /* AppColors.swift in Sources */,
 				3AA860502BDC2593003F79E3 /* LoginViewModel.swift in Sources */,
 				3A73430D2BDAF9C5007FBF7C /* NetworkError.swift in Sources */,

@@ -100,8 +100,6 @@ class ViewController: UIViewController {
     }
 }
 
-// MARK: - Extensions
-
 extension ViewController: CountriesViewModelDelegate {
     func didUpdateCountries() {
         DispatchQueue.main.async {
@@ -121,34 +119,3 @@ extension ViewController: UISearchBarDelegate {
         viewModel.filterCountries(with: searchText)
     }
 }
-
-
-//extension ViewController: UITableViewDataSource {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return viewModel.numberOfCountries
-//    }
-//    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CountryCell", for: indexPath) as? CountryTableViewCell else {
-//            return UITableViewCell()
-//        }
-//        
-//        if let country = viewModel.country(at: indexPath.row) {
-//            cell.configure(with: country)
-//        }
-//        
-//        return cell
-//    }
-//}
-//
-//extension ViewController: UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 180
-//    }
-//    
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        guard let country = viewModel.country(at: indexPath.row) else { return }
-//        let detailVC = DetailCountryViewController(country: country)
-//        navigationController?.pushViewController(detailVC, animated: true)
-//    }
-//}
