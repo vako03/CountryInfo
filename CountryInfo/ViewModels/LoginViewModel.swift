@@ -22,8 +22,7 @@ class LoginViewModel {
             return
         }
         
-        // Simulate login success
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
             let credentials = UserCredentials(username: username, password: password)
             KeychainService.shared.saveUserCredentials(credentials)
             self.delegate?.loginSuccess()

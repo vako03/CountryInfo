@@ -6,7 +6,10 @@
 //
 // ViewController.swift
 
+
+
 import UIKit
+import Speech
 
 class ViewController: UIViewController {
     
@@ -43,15 +46,12 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         bindViewModel()
-        
-        // Hide back button
-        navigationItem.hidesBackButton = true
     }
     
     // MARK: - UI Setup
     
     private func setupUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = AppColors.customBackgroundColor
         
         view.addSubview(titleLabel)
         view.addSubview(searchBar)
@@ -82,6 +82,7 @@ class ViewController: UIViewController {
         
         searchBar.barTintColor = .clear
         searchBar.backgroundImage = UIImage()
+        
     }
     
     // MARK: - ViewModel Binding
@@ -90,32 +91,44 @@ class ViewController: UIViewController {
         viewModel.delegate = self
         viewModel.fetchData()
     }
-    
-    // MARK: - Alert
-    
-    func showAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alert, animated: true, completion: nil)
-    }
 }
 
-extension ViewController: CountriesViewModelDelegate {
-    func didUpdateCountries() {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-    }
-    
-    func didEncounterError(error: Error) {
-        DispatchQueue.main.async {
-            self.showAlert(title: "Error", message: error.localizedDescription)
-        }
-    }
-}
+// MARK: - UISearchBarDelegate
 
 extension ViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         viewModel.filterCountries(with: searchText)
+    }
+    
+    func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
+        startSpeechRecognition()
+    }
+    
+    func startSpeechRecognition() {
+        let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))
+        let request = SFSpeechRecognitionRequest()
+        speechRecognizer?.recognitionTask(with: request) { [weak self] (result, error) in
+            guard let result = result else {
+                print("Recognition failed: \(error?.localizedDescription ?? "No error")")
+                return
+            }
+            if result.isFinal {
+                let spokenText = result.bestTranscription.formattedString
+                self?.searchBar.text = spokenText
+                self?.viewModel.filterCountries(with: spokenText)
+            }
+        }
+    }
+}
+
+// MARK: - CountriesViewModelDelegate
+
+extension ViewController: CountriesViewModelDelegate {
+    func didUpdateCountries() {
+        tableView.reloadData()
+    }
+    
+    func didEncounterError(error: Error) {
+        print("Error fetch data: \(error.localizedDescription)")
     }
 }

@@ -15,6 +15,7 @@
 		3A73430B2BDAF931007FBF7C /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A73430A2BDAF931007FBF7C /* Element.swift */; };
 		3A73430D2BDAF9C5007FBF7C /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A73430C2BDAF9C5007FBF7C /* NetworkError.swift */; };
 		3A73431D2BDB18C1007FBF7C /* DetailCountryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A73431C2BDB18C1007FBF7C /* DetailCountryViewModel.swift */; };
+		3A76CA1B2BDC7E3E00A2C07A /* DetailCountryViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A76CA1A2BDC7E3E00A2C07A /* DetailCountryViewController+UI.swift */; };
 		3AA860502BDC2593003F79E3 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA8604F2BDC2593003F79E3 /* LoginViewModel.swift */; };
 		3AA860522BDC25AF003F79E3 /* LoginPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA860512BDC25AF003F79E3 /* LoginPageViewController.swift */; };
 		3AA860542BDC2644003F79E3 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA860532BDC2644003F79E3 /* KeychainService.swift */; };
@@ -37,6 +38,7 @@
 		3A73430A2BDAF931007FBF7C /* Element.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 		3A73430C2BDAF9C5007FBF7C /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		3A73431C2BDB18C1007FBF7C /* DetailCountryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCountryViewModel.swift; sourceTree = "<group>"; };
+		3A76CA1A2BDC7E3E00A2C07A /* DetailCountryViewController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DetailCountryViewController+UI.swift"; sourceTree = "<group>"; };
 		3AA8604F2BDC2593003F79E3 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		3AA860512BDC25AF003F79E3 /* LoginPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageViewController.swift; sourceTree = "<group>"; };
 		3AA860532BDC2644003F79E3 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				3A7343072BDAF7DA007FBF7C /* ViewController+TableView.swift */,
 				3A367A832BDC705C00C01708 /* ViewControllerUIElements.swift */,
 				3A367A852BDC731D00C01708 /* DetailCountryViewElements.swift */,
+				3A76CA1A2BDC7E3E00A2C07A /* DetailCountryViewController+UI.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 				3A73431D2BDB18C1007FBF7C /* DetailCountryViewModel.swift in Sources */,
 				3A367A842BDC705C00C01708 /* ViewControllerUIElements.swift in Sources */,
 				3AC648812BD522F700610FE1 /* AppDelegate.swift in Sources */,
+				3A76CA1B2BDC7E3E00A2C07A /* DetailCountryViewController+UI.swift in Sources */,
 				3A73430B2BDAF931007FBF7C /* Element.swift in Sources */,
 				3A367A862BDC731D00C01708 /* DetailCountryViewElements.swift in Sources */,
 				3A7341EC2BD97C0B007FBF7C /* AppColors.swift in Sources */,

@@ -7,6 +7,7 @@
 
 import UIKit
 import SafariServices
+
 class DetailCountryViewController: UIViewController {
     
     // MARK: - Properties
@@ -14,7 +15,9 @@ class DetailCountryViewController: UIViewController {
     var viewModel: DetailCountryViewModel?
     
     private lazy var backButton: UIButton = {
-        let backButton = UIButton.makeCustomButton(image: UIImage(systemName: "chevron.left"), target: self, action: #selector(backButtonTapped))
+        let backButton = UIButton(type: .custom)
+        backButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         backButton.tintColor = AppColors.customBackgroundColor1
         return backButton
     }()
@@ -29,7 +32,7 @@ class DetailCountryViewController: UIViewController {
     private let contentView: UIView = {
         let contentView = UIView()
         contentView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = .white //secondarySystemBackground
         return contentView
     }()
     
@@ -54,44 +57,69 @@ class DetailCountryViewController: UIViewController {
         return imageView
     }()
     
-    private let aboutFlagInfo: UILabel = {
-        let label = UILabel.makeCustomLabel(text: "About the flag:", font: UIFont.boldSystemFont(ofSize: 20))
+    private let aboutFlagInfo : UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "About the flag:"
+        label.font = UIFont.boldSystemFont(ofSize: 20)
         return label
     }()
     
     private let aboutFlagLabel: UILabel = {
-        let label = UILabel.makeCustomLabel(text: " ", font: UIFont.systemFont(ofSize: 14))
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 14)
         label.numberOfLines = 0
         return label
     }()
     
     private let basicInfoLabel: UILabel = {
-        let label = UILabel.makeCustomLabel(text: "Basic Information:", font: UIFont.boldSystemFont(ofSize: 20))
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Basic Information:"
+        label.font = UIFont.boldSystemFont(ofSize: 20)
         return label
     }()
     
     private let basicInfoStackView: UIStackView = {
-        let stackView = UIStackView.makeCustomStackView(axis: .vertical, spacing: 10)
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = 10
         return stackView
     }()
     
     private let usefulLinksLabel: UILabel = {
-        let label = UILabel.makeCustomLabel(text: "Useful Links:", font: UIFont.boldSystemFont(ofSize: 20))
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Useful Links:"
+        label.font = UIFont.boldSystemFont(ofSize: 20)
         return label
     }()
     
     private let usefulLinksStackView: UIStackView = {
-        let stackView = UIStackView.makeCustomStackView(axis: .vertical, spacing: 10)
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = 10
         return stackView
     }()
     
     private lazy var googleMapsButton: UIButton = {
-        let button = UIButton.makeCustomButton(image: UIImage(named: "Group1"), target: self, action: #selector(openGoogleMaps))
+        let button = UIButton(type: .custom)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(openGoogleMaps), for: .touchUpInside)
+        button.setImage(UIImage(named: "Group1"), for: .normal)
+        button.backgroundColor = .clear
         return button
     }()
     
     private lazy var openStreetMapsButton: UIButton = {
-        let button = UIButton.makeCustomButton(image: UIImage(named: "Group2"), target: self, action: #selector(openOpenStreetMaps))
+        let button = UIButton(type: .custom)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(openOpenStreetMaps), for: .touchUpInside)
+        button.setImage(UIImage(named: "Group2"), for: .normal)
+        button.backgroundColor = .clear
         return button
     }()
     
@@ -201,12 +229,20 @@ class DetailCountryViewController: UIViewController {
             aboutFlagLabel.text = viewModel.aboutFlagText
             
             for (propertyName, propertyValue) in viewModel.basicInfoLabels {
-                let horizontalStackView = UIStackView.makeCustomStackView(axis: .horizontal, spacing: 10)
+                let horizontalStackView = UIStackView()
+                horizontalStackView.axis = .horizontal
+                horizontalStackView.spacing = 10
+                horizontalStackView.alignment = .fill
+                horizontalStackView.distribution = .fill
                 
-                let propertyLabel = UILabel.makeCustomLabel(text: propertyName, font: UIFont.systemFont(ofSize: 16))
+                let propertyLabel = UILabel()
+                propertyLabel.text = propertyName
+                propertyLabel.font = UIFont.systemFont(ofSize: 16)
                 horizontalStackView.addArrangedSubview(propertyLabel)
                 
-                let valueLabel = UILabel.makeCustomLabel(text: propertyValue ?? "", font: UIFont.systemFont(ofSize: 16))
+                let valueLabel = UILabel()
+                valueLabel.text = propertyValue ?? ""
+                valueLabel.font = UIFont.systemFont(ofSize: 16)
                 horizontalStackView.addArrangedSubview(valueLabel)
                 
                 self.basicInfoStackView.addArrangedSubview(horizontalStackView)
