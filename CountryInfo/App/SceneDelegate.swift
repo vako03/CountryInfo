@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let isLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
         let hasLoggedInBefore = UserDefaults.standard.bool(forKey: "hasLoggedInBefore")
-        let viewController = isLoggedIn && hasLoggedInBefore ? ViewController() : LoginPageViewController()
+        let viewController = isLoggedIn && hasLoggedInBefore ? CountriesViewController() : LoginPageViewController()
         let navigationController = UINavigationController(rootViewController: viewController)
         window?.rootViewController = navigationController
         

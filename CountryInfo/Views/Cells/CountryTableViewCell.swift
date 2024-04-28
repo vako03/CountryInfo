@@ -9,6 +9,8 @@ import UIKit
 
 class CountryTableViewCell: UITableViewCell {
     
+    static let reuseIdentifier = "CountryCell"
+    
     // MARK: - Properties
     
     private let nameLabel: UILabel = {
@@ -64,14 +66,14 @@ class CountryTableViewCell: UITableViewCell {
             arrowImageView.widthAnchor.constraint(equalToConstant: 12),
             
             nameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30)
+            nameLabel.trailingAnchor.constraint(equalTo: arrowImageView.leadingAnchor, constant: -10)
         ])
         backgroundColor = .clear
         contentView.backgroundColor = AppColors.customCellBackgroundColor
         
         contentView.layer.cornerRadius = 25
         contentView.layer.borderWidth = 1
-        contentView.layer.borderColor = AppColors.customBackgroundColor1.cgColor
+        contentView.layer.borderColor = AppColors.customTextColor.cgColor
         contentView.layer.shadowOpacity = 0.0
         contentView.clipsToBounds = true
     }
@@ -91,4 +93,5 @@ class CountryTableViewCell: UITableViewCell {
         }
     }
 }
+
 

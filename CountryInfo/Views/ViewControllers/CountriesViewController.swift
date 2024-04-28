@@ -1,17 +1,15 @@
 //
-//  ViewController.swift
+//  CountriesViewController.swift
 //  CountryInfo
 //
 //  Created by vako on 21.04.24.
 //
-// ViewController.swift
-
 
 
 import UIKit
 import Speech
 
-class ViewController: UIViewController {
+class CountriesViewController: UIViewController {
     
     // MARK: - Properties
     
@@ -95,7 +93,7 @@ class ViewController: UIViewController {
 
 // MARK: - UISearchBarDelegate
 
-extension ViewController: UISearchBarDelegate {
+extension CountriesViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         viewModel.filterCountries(with: searchText)
     }
@@ -123,7 +121,7 @@ extension ViewController: UISearchBarDelegate {
 
 // MARK: - CountriesViewModelDelegate
 
-extension ViewController: CountriesViewModelDelegate {
+extension CountriesViewController: CountriesViewModelDelegate {
     func didUpdateCountries() {
         tableView.reloadData()
     }

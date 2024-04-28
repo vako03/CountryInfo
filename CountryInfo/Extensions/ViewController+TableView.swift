@@ -6,7 +6,7 @@
 //
 import UIKit
 
-extension ViewController: UITableViewDataSource {
+extension CountriesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfCountries * 2 - 1
     }
@@ -26,7 +26,7 @@ extension ViewController: UITableViewDataSource {
     }
 }
 
-extension ViewController: UITableViewDelegate {
+extension CountriesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row % 2 == 0 {
             if let selectedCountry = viewModel.country(at: indexPath.row / 2) {

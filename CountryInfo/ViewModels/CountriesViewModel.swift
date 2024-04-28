@@ -16,7 +16,7 @@ class CountriesViewModel {
     private var countries: [Element] = []
     private var filteredCountries: [Element] = []
     weak var delegate: CountriesViewModelDelegate?
-    
+    private let networkService = NetworkService.shared
     
     var numberOfCountries: Int {
         return filteredCountries.count
@@ -30,33 +30,20 @@ class CountriesViewModel {
     }
     
     func fetchData() {
-        guard let url = URL(string: "https://restcountries.com/v3.1/all") else {
-            delegate?.didEncounterError(error: NetworkError.invalidURL)
-            return
-        }
-        
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            if let error = error {
-                self.delegate?.didEncounterError(error: error)
-                return
-            }
-            guard let data = data else {
-                self.delegate?.didEncounterError(error: NetworkError.noData)
-                return
-            }
-            
-            do {
-                let decoder = JSONDecoder()
-                self.countries = try decoder.decode([Element].self, from: data)
-                self.filteredCountries = self.countries
-                
+        networkService.fetchCountries { [weak self] result in
+            switch result {
+            case .success(let countries):
+                self?.countries = countries
+                self?.filteredCountries = countries
                 DispatchQueue.main.async {
-                    self.delegate?.didUpdateCountries()
+                    self?.delegate?.didUpdateCountries()
                 }
-            } catch {
-                self.delegate?.didEncounterError(error: error)
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self?.delegate?.didEncounterError(error: error)
+                }
             }
-        }.resume()
+        }
     }
     
     func filterCountries(with searchText: String) {

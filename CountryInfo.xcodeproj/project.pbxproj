@@ -11,15 +11,18 @@
 		3A7343062BDAD629007FBF7C /* CountriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7343052BDAD629007FBF7C /* CountriesViewModel.swift */; };
 		3A7343082BDAF7DA007FBF7C /* ViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7343072BDAF7DA007FBF7C /* ViewController+TableView.swift */; };
 		3A73430B2BDAF931007FBF7C /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A73430A2BDAF931007FBF7C /* Element.swift */; };
-		3A73430D2BDAF9C5007FBF7C /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A73430C2BDAF9C5007FBF7C /* NetworkError.swift */; };
+		3A73430D2BDAF9C5007FBF7C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A73430C2BDAF9C5007FBF7C /* NetworkService.swift */; };
 		3A73431D2BDB18C1007FBF7C /* DetailCountryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A73431C2BDB18C1007FBF7C /* DetailCountryViewModel.swift */; };
+		3A87FF5E2BDEA5CA003FC62E /* CountryCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A87FF5D2BDEA5CA003FC62E /* CountryCellViewModel.swift */; };
+		3A87FF602BDEB2FE003FC62E /* PropertiesSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A87FF5F2BDEB2FE003FC62E /* PropertiesSetup.swift */; };
+		3A87FF622BDEB8C9003FC62E /* ImagePickerHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A87FF612BDEB8C9003FC62E /* ImagePickerHandler.swift */; };
 		3AA860502BDC2593003F79E3 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA8604F2BDC2593003F79E3 /* LoginViewModel.swift */; };
 		3AA860522BDC25AF003F79E3 /* LoginPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA860512BDC25AF003F79E3 /* LoginPageViewController.swift */; };
 		3AA860542BDC2644003F79E3 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA860532BDC2644003F79E3 /* KeychainService.swift */; };
 		3AA860562BDC2BF5003F79E3 /* UserCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA860552BDC2BF5003F79E3 /* UserCredentials.swift */; };
 		3AC648812BD522F700610FE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC648802BD522F700610FE1 /* AppDelegate.swift */; };
 		3AC648832BD522F700610FE1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC648822BD522F700610FE1 /* SceneDelegate.swift */; };
-		3AC648852BD522F700610FE1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC648842BD522F700610FE1 /* ViewController.swift */; };
+		3AC648852BD522F700610FE1 /* CountriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC648842BD522F700610FE1 /* CountriesViewController.swift */; };
 		3AC6488A2BD522FB00610FE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AC648892BD522FB00610FE1 /* Assets.xcassets */; };
 		3AC6488D2BD522FB00610FE1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AC6488B2BD522FB00610FE1 /* LaunchScreen.storyboard */; };
 		3AC648992BD5993F00610FE1 /* CountryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC648982BD5993F00610FE1 /* CountryTableViewCell.swift */; };
@@ -31,8 +34,11 @@
 		3A7343052BDAD629007FBF7C /* CountriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesViewModel.swift; sourceTree = "<group>"; };
 		3A7343072BDAF7DA007FBF7C /* ViewController+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+TableView.swift"; sourceTree = "<group>"; };
 		3A73430A2BDAF931007FBF7C /* Element.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
-		3A73430C2BDAF9C5007FBF7C /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		3A73430C2BDAF9C5007FBF7C /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		3A73431C2BDB18C1007FBF7C /* DetailCountryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCountryViewModel.swift; sourceTree = "<group>"; };
+		3A87FF5D2BDEA5CA003FC62E /* CountryCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCellViewModel.swift; sourceTree = "<group>"; };
+		3A87FF5F2BDEB2FE003FC62E /* PropertiesSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertiesSetup.swift; sourceTree = "<group>"; };
+		3A87FF612BDEB8C9003FC62E /* ImagePickerHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerHandler.swift; sourceTree = "<group>"; };
 		3AA8604F2BDC2593003F79E3 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		3AA860512BDC25AF003F79E3 /* LoginPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageViewController.swift; sourceTree = "<group>"; };
 		3AA860532BDC2644003F79E3 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
@@ -40,7 +46,7 @@
 		3AC6487D2BD522F700610FE1 /* CountryInfo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CountryInfo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AC648802BD522F700610FE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3AC648822BD522F700610FE1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		3AC648842BD522F700610FE1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3AC648842BD522F700610FE1 /* CountriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesViewController.swift; sourceTree = "<group>"; };
 		3AC648892BD522FB00610FE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3AC6488C2BD522FB00610FE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3AC6488E2BD522FB00610FE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -81,7 +87,7 @@
 			children = (
 				3A73430A2BDAF931007FBF7C /* Element.swift */,
 				3AA860552BDC2BF5003F79E3 /* UserCredentials.swift */,
-				3A73430C2BDAF9C5007FBF7C /* NetworkError.swift */,
+				3A73430C2BDAF9C5007FBF7C /* NetworkService.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -92,6 +98,7 @@
 				3AA8604F2BDC2593003F79E3 /* LoginViewModel.swift */,
 				3A7343052BDAD629007FBF7C /* CountriesViewModel.swift */,
 				3A73431C2BDB18C1007FBF7C /* DetailCountryViewModel.swift */,
+				3A87FF5D2BDEA5CA003FC62E /* CountryCellViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -117,6 +124,8 @@
 			isa = PBXGroup;
 			children = (
 				3A7343072BDAF7DA007FBF7C /* ViewController+TableView.swift */,
+				3A87FF5F2BDEB2FE003FC62E /* PropertiesSetup.swift */,
+				3A87FF612BDEB8C9003FC62E /* ImagePickerHandler.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -152,7 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				3AA860512BDC25AF003F79E3 /* LoginPageViewController.swift */,
-				3AC648842BD522F700610FE1 /* ViewController.swift */,
+				3AC648842BD522F700610FE1 /* CountriesViewController.swift */,
 				3AC6489C2BD5B9BE00610FE1 /* DetailCountryViewController.swift */,
 			);
 			path = ViewControllers;
@@ -260,17 +269,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AC648992BD5993F00610FE1 /* CountryTableViewCell.swift in Sources */,
-				3AC648852BD522F700610FE1 /* ViewController.swift in Sources */,
+				3AC648852BD522F700610FE1 /* CountriesViewController.swift in Sources */,
 				3AC6489D2BD5B9BE00610FE1 /* DetailCountryViewController.swift in Sources */,
 				3A7343062BDAD629007FBF7C /* CountriesViewModel.swift in Sources */,
 				3AA860522BDC25AF003F79E3 /* LoginPageViewController.swift in Sources */,
+				3A87FF5E2BDEA5CA003FC62E /* CountryCellViewModel.swift in Sources */,
 				3A73431D2BDB18C1007FBF7C /* DetailCountryViewModel.swift in Sources */,
 				3AC648812BD522F700610FE1 /* AppDelegate.swift in Sources */,
+				3A87FF602BDEB2FE003FC62E /* PropertiesSetup.swift in Sources */,
 				3A73430B2BDAF931007FBF7C /* Element.swift in Sources */,
 				3A7341EC2BD97C0B007FBF7C /* AppColors.swift in Sources */,
 				3AA860502BDC2593003F79E3 /* LoginViewModel.swift in Sources */,
-				3A73430D2BDAF9C5007FBF7C /* NetworkError.swift in Sources */,
+				3A73430D2BDAF9C5007FBF7C /* NetworkService.swift in Sources */,
 				3AA860542BDC2644003F79E3 /* KeychainService.swift in Sources */,
+				3A87FF622BDEB8C9003FC62E /* ImagePickerHandler.swift in Sources */,
 				3A7343082BDAF7DA007FBF7C /* ViewController+TableView.swift in Sources */,
 				3AC648832BD522F700610FE1 /* SceneDelegate.swift in Sources */,
 				3AA860562BDC2BF5003F79E3 /* UserCredentials.swift in Sources */,

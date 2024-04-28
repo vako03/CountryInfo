@@ -6,92 +6,38 @@
 //
 import UIKit
 
-class LoginPageViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+class LoginPageViewController: UIViewController {
     
     private let viewModel = LoginViewModel()
     
-    private let imagePicker = UIImagePickerController()
+    fileprivate lazy var imagePickerHandler: ImagePickerHandler = {
+        return ImagePickerHandler(viewController: self)
+    }()
     
-    private lazy var imageView: UIButton = {
-        let button = UIButton()
+    internal lazy var imageView: UIButton = {
+        let button = PropertiesSetup.setupButton(title: "", backgroundColor: .clear)
         button.setImage(UIImage(named: "profileImage"), for: .normal)
         button.imageView?.contentMode = .scaleAspectFit
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(setProfileImage), for: .touchUpInside)
+        button.addTarget(self, action: #selector(setProfileImage(_:)), for: .touchUpInside)
         return button
     }()
     
-    private let textFieldLabel: UILabel = {
-        let label = UILabel()
-        label.text = "მომხმარებლის სახელი"
-        label.font = UIFont.systemFont(ofSize: 11)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    private lazy var textFieldLabel: UILabel = PropertiesSetup.setupLabel(text: "მომხმარებლის სახელი")
     
+    private lazy var usernameTextField: UITextField = PropertiesSetup.setupTextField(placeholder: "   შეიყვანეთ მომხმარებლის სახელი")
     
-    private let usernameTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "   შეიყვანეთ მომხმარებლის სახელი"
-        textField.borderStyle = .roundedRect
-        textField.layer.masksToBounds = true
-        textField.layer.cornerRadius = 20
-        textField.font = UIFont.systemFont(ofSize: 11)
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.backgroundColor = AppColors.customTextFieldBackgroundColor1
-        return textField
-    }()
+    private lazy var passwordLabel: UILabel = PropertiesSetup.setupLabel(text: "პაროლი")
     
-    private let passwordLabel: UILabel = {
-        let label = UILabel()
-        label.text = "პაროლი"
-        label.font = UIFont.systemFont(ofSize: 11)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    private lazy var passwordTextField: UITextField = PropertiesSetup.setupTextField(placeholder: "   შეიყვანეთ პაროლი", isSecureTextEntry: true)
     
-    private let passwordTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "   შეიყვანეთ პაროლი"
-        textField.borderStyle = .roundedRect
-        textField.layer.masksToBounds = true
-        textField.layer.cornerRadius = 20
-        textField.font = UIFont.systemFont(ofSize: 11)
-        textField.isSecureTextEntry = true
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.backgroundColor = AppColors.customTextFieldBackgroundColor1
-        
-        return textField
-    }()
+    private lazy var repeatPasswordLabel: UILabel = PropertiesSetup.setupLabel(text: "გაიმეორეთ პაროლი")
     
-    private let repeatPasswordLabel: UILabel = {
-        let label = UILabel()
-        label.text = "გაიმეორეთ პაროლი"
-        label.font = UIFont.systemFont(ofSize: 11)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    private let repeatPasswordTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "   განმეორებით შეიყვანეთ პაროლი"
-        textField.borderStyle = .roundedRect
-        textField.layer.masksToBounds = true
-        textField.layer.cornerRadius = 20
-        textField.font = UIFont.systemFont(ofSize: 11)
-        textField.isSecureTextEntry = true
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.backgroundColor = AppColors.customTextFieldBackgroundColor1
-        return textField
-    }()
+    private lazy var repeatPasswordTextField: UITextField = PropertiesSetup.setupTextField(placeholder: "   განმეორებით შეიყვანეთ პაროლი", isSecureTextEntry: true)
     
-    private let loginButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("შესვლა", for: .normal)
-        button.backgroundColor = .systemBlue
-        button.layer.masksToBounds = true
-        button.layer.cornerRadius = 20
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 11)
-        button.translatesAutoresizingMaskIntoConstraints = false
+    private lazy var loginButton: UIButton = {
+        let button = PropertiesSetup.setupButton(title: "შესვლა")
+        button.addTarget(self, action: #selector(loginButtonTapped(_:)), for: .touchUpInside)
         return button
     }()
     
@@ -102,10 +48,10 @@ class LoginPageViewController: UIViewController, UIImagePickerControllerDelegate
         
         viewModel.delegate = self
         
-        loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
-        
-        imagePicker.delegate = self
-        imagePicker.allowsEditing = true
+        // Set text field delegates
+        usernameTextField.delegate = self
+        passwordTextField.delegate = self
+        repeatPasswordTextField.delegate = self
     }
     
     private func setupUI() {
@@ -119,7 +65,6 @@ class LoginPageViewController: UIViewController, UIImagePickerControllerDelegate
         view.addSubview(loginButton)
         
         NSLayoutConstraint.activate([
-            
             imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 65),
             imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             imageView.widthAnchor.constraint(equalToConstant: 100),
@@ -156,49 +101,41 @@ class LoginPageViewController: UIViewController, UIImagePickerControllerDelegate
         ])
     }
     
-    @objc private func loginButtonTapped() {
-        guard let password = passwordTextField.text, !password.isEmpty,
+    @objc private func loginButtonTapped(_ sender: UIButton) {
+        guard let username = usernameTextField.text, !username.isEmpty,
+              let password = passwordTextField.text, !password.isEmpty,
               let repeatPassword = repeatPasswordTextField.text, !repeatPassword.isEmpty else {
             showAlert(message: "Please fill in all fields.")
             return
         }
         
-        guard password == repeatPassword else {
-            showAlert(message: "Passwords don't match.")
-            return
-        }
-        
-        viewModel.login(username: usernameTextField.text ?? "",
-                        password: password)
+        viewModel.login(username: username, password: password, repeatPassword: repeatPassword)
     }
     
-    @objc private func setProfileImage() {
-        present(imagePicker, animated: true, completion: nil)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let pickedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-            imageView.setImage(pickedImage, for: .normal)
-            // Save image to Documents directory
-            if let data = pickedImage.jpegData(compressionQuality: 0.8),
-               let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("profileImage.jpg") {
-                try? data.write(to: url)
-            }
-        }
-        picker.dismiss(animated: true, completion: nil)
+    @objc private func setProfileImage(_ sender: UIButton) {
+        imagePickerHandler.showImagePickerController()
     }
     
     private func showAlert(message: String) {
-        let alert = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alert, animated: true, completion: nil)
+        PropertiesSetup.AlertSetup.showAlert(on: self, title: "Alert", message: message)
     }
 }
+
+// MARK: - UITextFieldDelegate
+
+extension LoginPageViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}
+
+// MARK: - LoginViewModelDelegate
 
 extension LoginPageViewController: LoginViewModelDelegate {
     func loginSuccess() {
         UserDefaults.standard.set(true, forKey: "isLoggedIn")
-        let viewController = ViewController()
+        let viewController = CountriesViewController()
         navigationController?.pushViewController(viewController, animated: true)
         
         if !UserDefaults.standard.bool(forKey: "hasLoggedInBefore") {
