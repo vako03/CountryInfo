@@ -7,15 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3A367A842BDC705C00C01708 /* ViewControllerUIElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A367A832BDC705C00C01708 /* ViewControllerUIElements.swift */; };
-		3A367A862BDC731D00C01708 /* DetailCountryViewElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A367A852BDC731D00C01708 /* DetailCountryViewElements.swift */; };
 		3A7341EC2BD97C0B007FBF7C /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7341EB2BD97C0B007FBF7C /* AppColors.swift */; };
 		3A7343062BDAD629007FBF7C /* CountriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7343052BDAD629007FBF7C /* CountriesViewModel.swift */; };
 		3A7343082BDAF7DA007FBF7C /* ViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7343072BDAF7DA007FBF7C /* ViewController+TableView.swift */; };
 		3A73430B2BDAF931007FBF7C /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A73430A2BDAF931007FBF7C /* Element.swift */; };
 		3A73430D2BDAF9C5007FBF7C /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A73430C2BDAF9C5007FBF7C /* NetworkError.swift */; };
 		3A73431D2BDB18C1007FBF7C /* DetailCountryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A73431C2BDB18C1007FBF7C /* DetailCountryViewModel.swift */; };
-		3A76CA1B2BDC7E3E00A2C07A /* DetailCountryViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A76CA1A2BDC7E3E00A2C07A /* DetailCountryViewController+UI.swift */; };
 		3AA860502BDC2593003F79E3 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA8604F2BDC2593003F79E3 /* LoginViewModel.swift */; };
 		3AA860522BDC25AF003F79E3 /* LoginPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA860512BDC25AF003F79E3 /* LoginPageViewController.swift */; };
 		3AA860542BDC2644003F79E3 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA860532BDC2644003F79E3 /* KeychainService.swift */; };
@@ -30,15 +27,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3A367A832BDC705C00C01708 /* ViewControllerUIElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerUIElements.swift; sourceTree = "<group>"; };
-		3A367A852BDC731D00C01708 /* DetailCountryViewElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCountryViewElements.swift; sourceTree = "<group>"; };
 		3A7341EB2BD97C0B007FBF7C /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
 		3A7343052BDAD629007FBF7C /* CountriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesViewModel.swift; sourceTree = "<group>"; };
 		3A7343072BDAF7DA007FBF7C /* ViewController+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+TableView.swift"; sourceTree = "<group>"; };
 		3A73430A2BDAF931007FBF7C /* Element.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 		3A73430C2BDAF9C5007FBF7C /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		3A73431C2BDB18C1007FBF7C /* DetailCountryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCountryViewModel.swift; sourceTree = "<group>"; };
-		3A76CA1A2BDC7E3E00A2C07A /* DetailCountryViewController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DetailCountryViewController+UI.swift"; sourceTree = "<group>"; };
 		3AA8604F2BDC2593003F79E3 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		3AA860512BDC25AF003F79E3 /* LoginPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageViewController.swift; sourceTree = "<group>"; };
 		3AA860532BDC2644003F79E3 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
@@ -65,6 +59,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A71ED212BDE3C870065B137 /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+				3AC6488B2BD522FB00610FE1 /* LaunchScreen.storyboard */,
+			);
+			path = Launch;
+			sourceTree = "<group>";
+		};
+		3A71ED232BDE3D2C0065B137 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				3A7341EB2BD97C0B007FBF7C /* AppColors.swift */,
+				3AC648892BD522FB00610FE1 /* Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		3A7343092BDAF912007FBF7C /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -106,9 +117,6 @@
 			isa = PBXGroup;
 			children = (
 				3A7343072BDAF7DA007FBF7C /* ViewController+TableView.swift */,
-				3A367A832BDC705C00C01708 /* ViewControllerUIElements.swift */,
-				3A367A852BDC731D00C01708 /* DetailCountryViewElements.swift */,
-				3A76CA1A2BDC7E3E00A2C07A /* DetailCountryViewController+UI.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -125,9 +133,8 @@
 		3A8FC0BA2BD6F46200B8CD5F /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
-				3AC648892BD522FB00610FE1 /* Assets.xcassets */,
-				3A7341EB2BD97C0B007FBF7C /* AppColors.swift */,
-				3AC6488B2BD522FB00610FE1 /* LaunchScreen.storyboard */,
+				3AC6488E2BD522FB00610FE1 /* Info.plist */,
+				3A71ED212BDE3C870065B137 /* Launch */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -176,8 +183,8 @@
 				3A7343112BDAFA5D007FBF7C /* Views */,
 				3AA860572BDC2ED7003F79E3 /* Services */,
 				3A7343152BDAFB27007FBF7C /* Extensions */,
+				3A71ED232BDE3D2C0065B137 /* Resource */,
 				3A8FC0BA2BD6F46200B8CD5F /* Supporting */,
-				3AC6488E2BD522FB00610FE1 /* Info.plist */,
 			);
 			path = CountryInfo;
 			sourceTree = "<group>";
@@ -258,11 +265,8 @@
 				3A7343062BDAD629007FBF7C /* CountriesViewModel.swift in Sources */,
 				3AA860522BDC25AF003F79E3 /* LoginPageViewController.swift in Sources */,
 				3A73431D2BDB18C1007FBF7C /* DetailCountryViewModel.swift in Sources */,
-				3A367A842BDC705C00C01708 /* ViewControllerUIElements.swift in Sources */,
 				3AC648812BD522F700610FE1 /* AppDelegate.swift in Sources */,
-				3A76CA1B2BDC7E3E00A2C07A /* DetailCountryViewController+UI.swift in Sources */,
 				3A73430B2BDAF931007FBF7C /* Element.swift in Sources */,
-				3A367A862BDC731D00C01708 /* DetailCountryViewElements.swift in Sources */,
 				3A7341EC2BD97C0B007FBF7C /* AppColors.swift in Sources */,
 				3AA860502BDC2593003F79E3 /* LoginViewModel.swift in Sources */,
 				3A73430D2BDAF9C5007FBF7C /* NetworkError.swift in Sources */,
@@ -410,7 +414,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q2N9JMQ98Q;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = CountryInfo/Info.plist;
+				INFOPLIST_FILE = CountryInfo/Supporting/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -437,7 +441,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q2N9JMQ98Q;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = CountryInfo/Info.plist;
+				INFOPLIST_FILE = CountryInfo/Supporting/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
