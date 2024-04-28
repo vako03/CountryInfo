@@ -22,7 +22,7 @@ class PropertiesSetup {
         textField.backgroundColor = AppColors.customTextFieldBackgroundColor1
         return textField
     }
-
+    
     
     static func setupLabel(text: String) -> UILabel {
         let label = UILabel()
@@ -51,51 +51,51 @@ class PropertiesSetup {
         }
     }
     
-
-        static func setupView(backgroundColor: UIColor = .clear) -> UIView {
-            let view = UIView()
-            view.translatesAutoresizingMaskIntoConstraints = false
-            view.backgroundColor = backgroundColor
-            return view
-        }
-        
-   
-        
-        static func setupImageView(contentMode: UIView.ContentMode = .scaleAspectFit) -> UIImageView {
-            let imageView = UIImageView()
-            imageView.translatesAutoresizingMaskIntoConstraints = false
-            imageView.contentMode = contentMode
-            return imageView
-        }
-        
-        static func setupStackView(axis: NSLayoutConstraint.Axis, spacing: CGFloat) -> UIStackView {
-            let stackView = UIStackView()
-            stackView.translatesAutoresizingMaskIntoConstraints = false
-            stackView.axis = axis
-            stackView.spacing = spacing
-            return stackView
-        }
-        
-        static func createHorizontalLine() -> UIView {
-            let line = UIView()
-            line.translatesAutoresizingMaskIntoConstraints = false
-            line.backgroundColor = AppColors.customBackgroundColor1
-            return line
-        }
-        
-        static func addHorizontalLine(to view: UIView, below anchorView: UIView, constant: CGFloat = 20) -> UIView {
-            let line = createHorizontalLine()
-            view.addSubview(line)
-            
-            NSLayoutConstraint.activate([
-                line.topAnchor.constraint(equalTo: anchorView.bottomAnchor, constant: constant),
-                line.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-                line.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
-                line.heightAnchor.constraint(equalToConstant: 2)
-            ])
-            
-            return line
-        }
+    
+    static func setupView(backgroundColor: UIColor = .clear) -> UIView {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = backgroundColor
+        return view
     }
+    
+    
+    
+    static func setupImageView(contentMode: UIView.ContentMode = .scaleAspectFit) -> UIImageView {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = contentMode
+        return imageView
+    }
+    
+    static func setupStackView(axis: NSLayoutConstraint.Axis, spacing: CGFloat) -> UIStackView {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = axis
+        stackView.spacing = spacing
+        return stackView
+    }
+    
+    static func createHorizontalLine() -> UIView {
+        let line = UIView()
+        line.translatesAutoresizingMaskIntoConstraints = false
+        line.backgroundColor = AppColors.customBackgroundColor1
+        return line
+    }
+    
+    static func addHorizontalLine(to view: UIView, below anchorView: UIView, constant: CGFloat = 20) -> UIView {
+        let line = createHorizontalLine()
+        view.addSubview(line)
+        
+        NSLayoutConstraint.activate([
+            line.topAnchor.constraint(equalTo: anchorView.bottomAnchor, constant: constant),
+            line.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
+            line.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
+            line.heightAnchor.constraint(equalToConstant: 2)
+        ])
+        
+        return line
+    }
+}
 
 

@@ -4,10 +4,14 @@
 //
 //  Created by vako on 26.04.24.
 //
-
 import Foundation
 
+protocol DetailCountryViewModelDelegate: AnyObject {
+    func viewModelDidUpdateData()
+}
+
 struct DetailCountryViewModel {
+    weak var delegate: DetailCountryViewModelDelegate?
     let country: Element
     
     init(country: Element) {
@@ -42,5 +46,9 @@ struct DetailCountryViewModel {
     
     var openStreetMapsURL: URL? {
         return URL(string: country.maps.openStreetMaps)
+    }
+    
+    func fetchData() {
+        delegate?.viewModelDidUpdateData()
     }
 }
