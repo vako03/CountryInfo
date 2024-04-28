@@ -11,7 +11,11 @@ class DetailCountryViewController: UIViewController {
     
     // MARK: - Properties
     
-    var viewModel: DetailCountryViewModel?
+    var viewModel: DetailCountryViewModel? {
+        didSet {
+            updateUI()
+        }
+    }
     
     private lazy var detailCountryView: DetailCountryView = {
         let view = DetailCountryView()
@@ -25,6 +29,7 @@ class DetailCountryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        updateUI()
     }
     
     // MARK: - View Setup
@@ -42,6 +47,12 @@ class DetailCountryViewController: UIViewController {
             detailCountryView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
+        updateUI()
+    }
+    
+    private func updateUI() {
+        
+        title = viewModel?.country.name.common
         detailCountryView.viewModel = viewModel
     }
     

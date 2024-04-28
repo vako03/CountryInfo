@@ -230,6 +230,9 @@ class DetailCountryView: UIView {
         
         aboutFlagLabel.text = viewModel.aboutFlagText
         
+        // Clear previous labels
+        basicInfoStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        
         for (propertyName, propertyValue) in viewModel.basicInfoLabels {
             let horizontalStackView = PropertiesSetup.setupStackView(axis: .horizontal, spacing: 10)
             
@@ -242,6 +245,7 @@ class DetailCountryView: UIView {
             self.basicInfoStackView.addArrangedSubview(horizontalStackView)
         }
     }
+
     
     // MARK: - Actions
     
