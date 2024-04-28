@@ -25,101 +25,78 @@ class DetailCountryViewController: UIViewController {
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.backgroundColor =  AppColors.customBackgroundColor
         return scrollView
     }()
     
     private let contentView: UIView = {
-        let contentView = UIView()
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.backgroundColor = .white //secondarySystemBackground
-        return contentView
+        let view = PropertiesSetup.setupView(backgroundColor: AppColors.customBackgroundColor)
+        return view
     }()
     
-    let imageContainerView: UIView = {
-        let imageContainerView = UIView()
-        imageContainerView.translatesAutoresizingMaskIntoConstraints = false
-        imageContainerView.layer.cornerRadius = 15
-        imageContainerView.layer.shadowColor = UIColor.black.cgColor
-        imageContainerView.layer.shadowRadius = 2
-        imageContainerView.layer.shadowOpacity = 0.5
-        imageContainerView.layer.shadowOffset = CGSize(width: 0, height: 5)
-        imageContainerView.layer.masksToBounds = false
-        return imageContainerView
+    private let imageContainerView: UIView = {
+        let view = PropertiesSetup.setupView(backgroundColor: .clear)
+        view.layer.cornerRadius = 15
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowRadius = 2
+        view.layer.shadowOpacity = 0.5
+        view.layer.shadowOffset = CGSize(width: 0, height: 5)
+        view.layer.masksToBounds = false
+        return view
     }()
     
     private let flagImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleToFill
+        let imageView = PropertiesSetup.setupImageView(contentMode: .scaleToFill)
         imageView.layer.cornerRadius = 15
         imageView.clipsToBounds = true
         return imageView
     }()
     
     private let aboutFlagInfo : UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "About the flag:"
+        let label = PropertiesSetup.setupLabel(text: "About the flag:")
         label.font = UIFont.boldSystemFont(ofSize: 20)
         return label
     }()
     
     private let aboutFlagLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
+        let label = PropertiesSetup.setupLabel(text: "")
         label.font = UIFont.systemFont(ofSize: 14)
         label.numberOfLines = 0
         return label
     }()
     
     private let basicInfoLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Basic Information:"
+        let label = PropertiesSetup.setupLabel(text: "Basic Information:")
         label.font = UIFont.boldSystemFont(ofSize: 20)
         return label
     }()
     
     private let basicInfoStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.spacing = 10
+        let stackView = PropertiesSetup.setupStackView(axis: .vertical, spacing: 10)
         return stackView
     }()
     
     private let usefulLinksLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Useful Links:"
+        let label = PropertiesSetup.setupLabel(text: "Useful Links:")
         label.font = UIFont.boldSystemFont(ofSize: 20)
         return label
     }()
     
     private let usefulLinksStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.spacing = 10
+        let stackView = PropertiesSetup.setupStackView(axis: .vertical, spacing: 10)
         return stackView
     }()
     
     private lazy var googleMapsButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.translatesAutoresizingMaskIntoConstraints = false
+        let button = PropertiesSetup.setupButton(title: "", backgroundColor: .clear)
         button.addTarget(self, action: #selector(openGoogleMaps), for: .touchUpInside)
         button.setImage(UIImage(named: "Group1"), for: .normal)
-        button.backgroundColor = .clear
         return button
     }()
     
     private lazy var openStreetMapsButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.translatesAutoresizingMaskIntoConstraints = false
+        let button = PropertiesSetup.setupButton(title: "", backgroundColor: .clear)
         button.addTarget(self, action: #selector(openOpenStreetMaps), for: .touchUpInside)
         button.setImage(UIImage(named: "Group2"), for: .normal)
-        button.backgroundColor = .clear
         return button
     }()
     
@@ -127,18 +104,20 @@ class DetailCountryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = AppColors.customBackgroundColor
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
-        setupUI()
+        setupViews()
     }
     
-    private func setupUI() {
+    // MARK: - View Setup
+    
+    private func setupViews() {
+        view.backgroundColor = AppColors.customBackgroundColor
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+        
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
+        
         contentView.addSubview(imageContainerView)
         imageContainerView.addSubview(flagImageView)
-        contentView.backgroundColor =  AppColors.customBackgroundColor
-        
         contentView.addSubview(aboutFlagInfo)
         contentView.addSubview(aboutFlagLabel)
         contentView.addSubview(basicInfoLabel)
@@ -148,8 +127,11 @@ class DetailCountryViewController: UIViewController {
         contentView.addSubview(googleMapsButton)
         contentView.addSubview(openStreetMapsButton)
         
-        let line1 = createHorizontalLine()
-        let line2 = createHorizontalLine()
+        let line1 = PropertiesSetup.createHorizontalLine()
+        let line2 = PropertiesSetup.createHorizontalLine()
+        
+        contentView.addSubview(line1)
+        contentView.addSubview(line2)
         
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -213,6 +195,7 @@ class DetailCountryViewController: UIViewController {
             openStreetMapsButton.leadingAnchor.constraint(equalTo: googleMapsButton.trailingAnchor, constant: 87),
             openStreetMapsButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -94),
             
+            contentView.bottomAnchor.constraint(greaterThanOrEqualTo: openStreetMapsButton.bottomAnchor, constant: 25)
         ])
         
         if let viewModel = viewModel {
@@ -229,43 +212,30 @@ class DetailCountryViewController: UIViewController {
             aboutFlagLabel.text = viewModel.aboutFlagText
             
             for (propertyName, propertyValue) in viewModel.basicInfoLabels {
-                let horizontalStackView = UIStackView()
-                horizontalStackView.axis = .horizontal
-                horizontalStackView.spacing = 10
-                horizontalStackView.alignment = .fill
-                horizontalStackView.distribution = .fill
+                let horizontalStackView = PropertiesSetup.setupStackView(axis: .horizontal, spacing: 10)
                 
-                let propertyLabel = UILabel()
-                propertyLabel.text = propertyName
-                propertyLabel.font = UIFont.systemFont(ofSize: 16)
+                let propertyLabel = PropertiesSetup.setupLabel(text: propertyName)
+                let valueLabel = PropertiesSetup.setupLabel(text: propertyValue ?? "")
+                
                 horizontalStackView.addArrangedSubview(propertyLabel)
-                
-                let valueLabel = UILabel()
-                valueLabel.text = propertyValue ?? ""
-                valueLabel.font = UIFont.systemFont(ofSize: 16)
                 horizontalStackView.addArrangedSubview(valueLabel)
                 
                 self.basicInfoStackView.addArrangedSubview(horizontalStackView)
             }
         }
-        setupNavigationBar()
         
-        contentView.bottomAnchor.constraint(greaterThanOrEqualTo: openStreetMapsButton.bottomAnchor, constant: 25).isActive = true
+        setupNavigationBar()
     }
     
+    // MARK: - Navigation Bar
     
     private func setupNavigationBar() {
         if let viewModel = viewModel {
-            let titleLabel = UILabel()
-            titleLabel.text = viewModel.country.name.common
-            titleLabel.font = UIFont.boldSystemFont(ofSize: 18)
-            titleLabel.textAlignment = .center
-            navigationItem.titleView = titleLabel
+            setupNavigationBar(withTitle: viewModel.country.name.common)
         }
-        navigationController?.navigationBar.titleTextAttributes = [
-            .foregroundColor: UIColor.black
-        ]
     }
+    
+    // MARK: - Actions
     
     @objc private func openGoogleMaps() {
         guard let viewModel = viewModel,
@@ -285,14 +255,6 @@ class DetailCountryViewController: UIViewController {
         
         let safariVC = SFSafariViewController(url: url)
         present(safariVC, animated: true)
-    }
-    
-    private func createHorizontalLine() -> UIView {
-        let line = UIView()
-        line.translatesAutoresizingMaskIntoConstraints = false
-        line.backgroundColor = UIColor(red: 217/255, green: 217/255, blue: 217/255, alpha: 1.0)
-        view.addSubview(line)
-        return line
     }
     
     @objc private func backButtonTapped() {

@@ -16,6 +16,7 @@
 		3A87FF5E2BDEA5CA003FC62E /* CountryCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A87FF5D2BDEA5CA003FC62E /* CountryCellViewModel.swift */; };
 		3A87FF602BDEB2FE003FC62E /* PropertiesSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A87FF5F2BDEB2FE003FC62E /* PropertiesSetup.swift */; };
 		3A87FF622BDEB8C9003FC62E /* ImagePickerHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A87FF612BDEB8C9003FC62E /* ImagePickerHandler.swift */; };
+		3A87FF642BDEC83B003FC62E /* UIViewController+NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A87FF632BDEC83B003FC62E /* UIViewController+NavigationBar.swift */; };
 		3AA860502BDC2593003F79E3 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA8604F2BDC2593003F79E3 /* LoginViewModel.swift */; };
 		3AA860522BDC25AF003F79E3 /* LoginPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA860512BDC25AF003F79E3 /* LoginPageViewController.swift */; };
 		3AA860542BDC2644003F79E3 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA860532BDC2644003F79E3 /* KeychainService.swift */; };
@@ -39,6 +40,7 @@
 		3A87FF5D2BDEA5CA003FC62E /* CountryCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCellViewModel.swift; sourceTree = "<group>"; };
 		3A87FF5F2BDEB2FE003FC62E /* PropertiesSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertiesSetup.swift; sourceTree = "<group>"; };
 		3A87FF612BDEB8C9003FC62E /* ImagePickerHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerHandler.swift; sourceTree = "<group>"; };
+		3A87FF632BDEC83B003FC62E /* UIViewController+NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+NavigationBar.swift"; sourceTree = "<group>"; };
 		3AA8604F2BDC2593003F79E3 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		3AA860512BDC25AF003F79E3 /* LoginPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageViewController.swift; sourceTree = "<group>"; };
 		3AA860532BDC2644003F79E3 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				3A7343072BDAF7DA007FBF7C /* ViewController+TableView.swift */,
 				3A87FF5F2BDEB2FE003FC62E /* PropertiesSetup.swift */,
 				3A87FF612BDEB8C9003FC62E /* ImagePickerHandler.swift */,
+				3A87FF632BDEC83B003FC62E /* UIViewController+NavigationBar.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 				3AC648852BD522F700610FE1 /* CountriesViewController.swift in Sources */,
 				3AC6489D2BD5B9BE00610FE1 /* DetailCountryViewController.swift in Sources */,
 				3A7343062BDAD629007FBF7C /* CountriesViewModel.swift in Sources */,
+				3A87FF642BDEC83B003FC62E /* UIViewController+NavigationBar.swift in Sources */,
 				3AA860522BDC25AF003F79E3 /* LoginPageViewController.swift in Sources */,
 				3A87FF5E2BDEA5CA003FC62E /* CountryCellViewModel.swift in Sources */,
 				3A73431D2BDB18C1007FBF7C /* DetailCountryViewModel.swift in Sources */,

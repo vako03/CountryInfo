@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DetailCountryViewModel {
+struct DetailCountryViewModel {
     let country: Element
     
     init(country: Element) {
@@ -37,12 +37,10 @@ class DetailCountryViewModel {
     }
     
     var googleMapsURL: URL? {
-        guard let mapsURLString = country.maps.openStreetMaps.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return nil }
-        return URL(string: mapsURLString)
+        return URL(string: country.maps.googleMaps)
     }
     
     var openStreetMapsURL: URL? {
-        guard let mapsURLString = country.maps.googleMaps.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return nil }
-        return URL(string: mapsURLString)
+        return URL(string: country.maps.openStreetMaps)
     }
 }
